@@ -14,7 +14,10 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
     private let scrollView: UIScrollView = UIScrollView()
     private let imageView: UIImageView = UIImageView()
     private let animatingImageView: UIImageView = UIImageView()
-    private let loadingIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+
+    public let loadingIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    public private(set) var loadingIndicatorViewXLayoutConstraint: NSLayoutConstraint?
+    public private(set) var loadingIndicatorViewYLayoutConstraint: NSLayoutConstraint?
 
     private let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
 
@@ -100,6 +103,10 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
 
         // Constraints
 
+        let loadingIndicatorViewXLayoutConstraint = loadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        self.loadingIndicatorViewXLayoutConstraint = loadingIndicatorViewXLayoutConstraint
+        let loadingIndicatorViewYLayoutConstraint = loadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        self.loadingIndicatorViewYLayoutConstraint = loadingIndicatorViewYLayoutConstraint
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -115,8 +122,8 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
             shareButton.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             shareButton.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
             shareButton.heightAnchor.constraint(equalToConstant: 44),
-            loadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingIndicatorViewXLayoutConstraint,
+            loadingIndicatorViewYLayoutConstraint,
         ])
 
         // Transition

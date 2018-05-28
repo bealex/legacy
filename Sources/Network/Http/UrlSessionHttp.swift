@@ -116,7 +116,7 @@ open class UrlSessionHttp: Http {
 
         let responseQueue = self.responseQueue
 
-        let cmpl: HttpCompletion = { response, data, error in
+        let responseQueueCompletion: HttpCompletion = { response, data, error in
             responseQueue.async {
                 completion(response, data, error)
             }
@@ -128,19 +128,19 @@ open class UrlSessionHttp: Http {
             self.log(response, request, data, error as NSError?, duration: end.timeIntervalSince(start), date: end)
 
             guard let response = response, let data = data else {
-                cmpl(nil, nil, error.map(self.processError))
+                responseQueueCompletion(nil, nil, error.map(self.processError))
                 return
             }
 
             guard let httpResponse = response as? HTTPURLResponse else {
-                cmpl(nil, data, .nonHttpResponse(response: response))
+                responseQueueCompletion(nil, data, .nonHttpResponse(response: response))
                 return
             }
 
             if httpResponse.statusCode >= 400 {
-                cmpl(httpResponse, data, .status(code: httpResponse.statusCode, error: error))
+                responseQueueCompletion(httpResponse, data, .status(code: httpResponse.statusCode, error: error))
             } else {
-                cmpl(httpResponse, data, error.map(self.processError))
+                responseQueueCompletion(httpResponse, data, error.map(self.processError))
             }
         }
 

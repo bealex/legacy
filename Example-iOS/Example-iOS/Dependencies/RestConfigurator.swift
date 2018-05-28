@@ -59,7 +59,7 @@ class RestConfigurator: Configurator {
         let apiHttp = self.apiHttp(logger: logger)
         let imagesHttp = self.imagesHttp(logger: logger)
 
-        let imageLoader = HttpImageLoader(http: imagesHttp)
+        let imageLoader = HttpImageLoader(http: imagesHttp, completionQueue: DispatchQueue.main)
         let feedService = self.feedService(baseUrl: baseUrl, http: apiHttp)
 
         // Registering protocols resolvers.

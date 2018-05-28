@@ -28,9 +28,20 @@ public enum ResizeMode {
     case fill
 }
 
+public enum ImageType {
+    case jpeg
+    case png
+}
+
 public typealias ImageLoaderCompletion = (ImageLoaderTask, Result<(Data, UIImage), ImageLoaderError>) -> Void
 
 public protocol ImageLoader {
     @discardableResult
-    func load(url: URL, size: CGSize, mode: ResizeMode, completion: @escaping ImageLoaderCompletion) -> ImageLoaderTask
+    func load(
+        url: URL,
+        size: CGSize,
+        mode: ResizeMode,
+        imageType: ImageType,
+        completion: @escaping ImageLoaderCompletion
+    ) -> ImageLoaderTask
 }

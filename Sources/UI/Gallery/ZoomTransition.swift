@@ -19,10 +19,10 @@ public protocol ZoomTransitionDelegate: class {
 
 public class ZoomTransition: NSObject,
         UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning, UIGestureRecognizerDelegate {
-    weak var sourceTransition: ZoomTransitionDelegate?
-    weak var destinationTransition: ZoomTransitionDelegate?
+    public weak var sourceTransition: ZoomTransitionDelegate?
+    public weak var destinationTransition: ZoomTransitionDelegate?
 
-    var interactive: Bool
+    public var interactive: Bool
 
     var shouldStartInteractiveTransition: (() -> Bool)?
     var startTransition: (() -> Void)?
@@ -38,7 +38,7 @@ public class ZoomTransition: NSObject,
 
     let panGestureRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer()
 
-    init(interactive: Bool) {
+    public init(interactive: Bool) {
         self.interactive = interactive
 
         super.init()
@@ -218,7 +218,7 @@ public class ZoomTransition: NSObject,
         context.progress = progress
         context.transitionContext.updateInteractiveTransition(progress)
 
-        self.interactiveTransitionContext = context
+        interactiveTransitionContext = context
     }
 
     func finish() {

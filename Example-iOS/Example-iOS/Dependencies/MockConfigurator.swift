@@ -38,7 +38,7 @@ final class MockConfigurator: Configurator {
         let logger: Logger = PrintLogger()
         let imagesHttp = self.imagesHttp(logger: logger)
 
-        let imageLoader = HttpImageLoader(http: imagesHttp)
+        let imageLoader = HttpImageLoader(http: imagesHttp, completionQueue: DispatchQueue.main)
         let feedService = MockFeedService()
 
         // Registering protocols resolvers.
