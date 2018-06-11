@@ -10,11 +10,13 @@ import UIKit
 
 public enum Reusable<CellType> {
     case `class`(id: String)
+    case classId
     case nib(id: String, name: String, bundle: Bundle?)
 
     public var id: String {
         switch self {
             case .class(let id): return id
+            case .classId: return String(describing: type(of: CellType.self))
             case .nib(let id, _, _): return id
         }
     }
@@ -27,6 +29,8 @@ public extension UITableView {
         switch reusable {
             case .class(let id):
                 register(CellType.self, forCellReuseIdentifier: id)
+            case .classId:
+                register(CellType.self, forCellReuseIdentifier: reusable.id)
             case .nib(let id, let name, let bundle):
                 let nib = UINib(nibName: name, bundle: bundle)
                 register(nib, forCellReuseIdentifier: id)
@@ -55,6 +59,8 @@ public extension UITableView {
         switch reusable {
             case .class(let id):
                 register(CellType.self, forHeaderFooterViewReuseIdentifier: id)
+            case .classId:
+                register(CellType.self, forHeaderFooterViewReuseIdentifier: reusable.id)
             case .nib(let id, let name, let bundle):
                 let nib = UINib(nibName: name, bundle: bundle)
                 register(nib, forHeaderFooterViewReuseIdentifier: id)
@@ -75,6 +81,8 @@ public extension UICollectionView {
         switch reusable {
             case .class(let id):
                 register(CellType.self, forCellWithReuseIdentifier: id)
+            case .classId:
+                register(CellType.self, forCellWithReuseIdentifier: reusable.id)
             case .nib(let id, let name, let bundle):
                 let nib = UINib(nibName: name, bundle: bundle)
                 register(nib, forCellWithReuseIdentifier: id)
@@ -85,6 +93,8 @@ public extension UICollectionView {
         switch reusable {
             case .class(let id):
                 register(CellType.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: id)
+            case .classId:
+                register(CellType.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reusable.id)
             case .nib(let id, let name, let bundle):
                 let nib = UINib(nibName: name, bundle: bundle)
                 register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: id)

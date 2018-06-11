@@ -33,7 +33,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
     private var scrollSize: CGSize = .zero
     private var imageSize: CGSize = .zero
 
-    private var controlsAreVisible: Bool = false
+    private var controlsAreVisible: Bool = true
     private var statusBarHidden: Bool = false
     private var isShown: Bool = false
     private var isLaidOut: Bool = false
@@ -69,7 +69,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
         // Title View
 
         titleView.translatesAutoresizingMaskIntoConstraints = false
-        titleView.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        titleView.backgroundColor = UIColor(white: 1, alpha: 0.3)
         titleView.isHidden = !controlsAreVisible
         view.addSubview(titleView)
 
@@ -213,7 +213,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
 
         isTransitioning = false
 
-        showControls(false)
+        showControls(true)
     }
 
     override open func viewDidLayoutSubviews() {

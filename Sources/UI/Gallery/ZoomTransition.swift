@@ -80,7 +80,7 @@ public class ZoomTransition: NSObject,
             let destinationFrame = destinationTransition?.zoomTransitionDestinationFrame(for: animatingView, frame: toFinalFrame)
         else { return }
 
-        let animatingFrame = containerView.convert(semiAnimatingFrame ?? animatingView.frame, from: fromView)
+        let animatingFrame = containerView.convert(semiAnimatingFrame ?? animatingView.frame, from: fromView.window)
         animatingView.transform = fromView.transform
         animatingView.frame = animatingFrame
         containerView.addSubview(animatingView)
