@@ -33,7 +33,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
     private var scrollSize: CGSize = .zero
     private var imageSize: CGSize = .zero
 
-    private var controlsAreVisible: Bool = true
+    private var controlsAreVisible: Bool = false
     private var statusBarHidden: Bool = false
     private var isShown: Bool = false
     private var isLaidOut: Bool = false
@@ -103,6 +103,8 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
 
         // Constraints
 
+        let buttonHeight: CGFloat = 44
+
         let loadingIndicatorViewXLayoutConstraint = loadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         self.loadingIndicatorViewXLayoutConstraint = loadingIndicatorViewXLayoutConstraint
         let loadingIndicatorViewYLayoutConstraint = loadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -113,18 +115,25 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             titleView.topAnchor.constraint(equalTo: view.topAnchor),
-            titleView.heightAnchor.constraint(equalToConstant: 64),
             titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             closeButton.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             closeButton.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
-            closeButton.heightAnchor.constraint(equalToConstant: 44),
+            closeButton.heightAnchor.constraint(equalToConstant: buttonHeight),
             shareButton.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             shareButton.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
-            shareButton.heightAnchor.constraint(equalToConstant: 44),
+            shareButton.heightAnchor.constraint(equalToConstant: buttonHeight),
             loadingIndicatorViewXLayoutConstraint,
             loadingIndicatorViewYLayoutConstraint,
         ])
+
+        if #available(iOS 11.0, *) {
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            shareButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        } else {
+            closeButton.topAnchor.constraint(equalTo: titleView.topAnchor, constant: 20).isActive = true
+            shareButton.topAnchor.constraint(equalTo: titleView.topAnchor, constant: 20).isActive = true
+        }
 
         // Transition
 
@@ -213,7 +222,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
 
         isTransitioning = false
 
-        showControls(true)
+        showControls(false)
     }
 
     override open func viewDidLayoutSubviews() {

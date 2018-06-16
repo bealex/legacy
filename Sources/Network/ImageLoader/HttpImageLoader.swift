@@ -38,7 +38,7 @@ open class HttpImageLoader: ImageLoader {
         let httpTask = http.data(request: request) { _, data, error in
             if let error = error {
                 asyncCompletion(.failure(.http(error)))
-            } else if let data = data, let image = UIImage.prerenderedFrom(data: data, imageType: imageType) {
+            } else if let data = data, let image = UIImage.thumbnail(data: data, imageType: imageType, pixelSize: size) {
                 asyncCompletion(.success((data, image)))
             } else {
                 asyncCompletion(.failure(.creating))

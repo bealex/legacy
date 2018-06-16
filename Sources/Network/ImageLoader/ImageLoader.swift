@@ -31,6 +31,38 @@ public enum ResizeMode {
 public enum ImageType {
     case jpeg
     case png
+    case gif
+
+    case unknown
+
+    public static func guess(url: URL) -> ImageType {
+        switch url.pathExtension.lowercased() {
+            case "jpeg", "jpg":
+                return .jpeg
+            case "png":
+                return .png
+            case "gif":
+                return .gif
+            default:
+                return .unknown
+        }
+    }
+
+    public var utType: String? {
+        let hint: String?
+        switch self {
+            case .jpeg:
+                hint = "public.jpeg"
+            case .png:
+                hint = "public.png"
+            case .gif:
+                hint = "public.gif"
+            case .unknown:
+                hint = nil
+        }
+
+        return hint
+    }
 }
 
 public typealias ImageLoaderCompletion = (ImageLoaderTask, Result<(Data, UIImage), ImageLoaderError>) -> Void
