@@ -45,7 +45,7 @@ open class GalleryViewController: UIPageViewController, UIPageViewControllerData
     }
 
     override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return currentViewController.preferredStatusBarStyle
     }
 
     override open var shouldAutorotate: Bool {

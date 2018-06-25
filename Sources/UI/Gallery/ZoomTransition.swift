@@ -77,10 +77,12 @@ public class ZoomTransition: NSObject,
 
         guard
             let animatingView = sourceTransition?.zoomTransitionAnimatingView,
-            let destinationFrame = destinationTransition?.zoomTransitionDestinationFrame(for: animatingView, frame: toFinalFrame)
+            var destinationFrame = destinationTransition?.zoomTransitionDestinationFrame(for: animatingView, frame: toFinalFrame)
         else { return }
 
-        let animatingFrame = containerView.convert(semiAnimatingFrame ?? animatingView.frame, from: fromView.window)
+        destinationFrame = animatingView.superview?.convert(destinationFrame, from: nil) ?? destinationFrame
+
+        let animatingFrame = containerView.convert(semiAnimatingFrame ?? animatingView.frame, from: fromView)
         animatingView.transform = fromView.transform
         animatingView.frame = animatingFrame
         containerView.addSubview(animatingView)
@@ -330,7 +332,7 @@ public class ZoomTransition: NSObject,
 
         semiContext.progress = progress
 
-        self.semiInteractiveTransitionContext = semiContext
+        semiInteractiveTransitionContext = semiContext
     }
 
     private func finishSemiInteractiveTransition() {
