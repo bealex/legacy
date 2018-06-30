@@ -59,6 +59,24 @@ public extension UIImage {
             kCGImageSourceCreateThumbnailFromImageAlways: true,
             kCGImageSourceShouldCacheImmediately: true,
             kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceShouldAllowFloat: true,
+            kCGImageSourceThumbnailMaxPixelSize: pixelSize.map { max($0.width, $0.height) } ?? 2048
+        ] as CFDictionary
+
+        guard let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampleOptions) else { return nil }
+
+        return UIImage(cgImage: cgImage)
+    }
+
+    static public func thumbnail(url: URL, pixelSize: CGSize? = nil) -> UIImage? {
+        let options: [CFString: Any] = [ kCGImageSourceShouldCache: false ]
+        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, options as CFDictionary) else { return nil }
+
+        let downsampleOptions = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceShouldCacheImmediately: true,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceShouldAllowFloat: true,
             kCGImageSourceThumbnailMaxPixelSize: pixelSize.map { max($0.width, $0.height) } ?? 2048
         ] as CFDictionary
 
