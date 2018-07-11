@@ -28,6 +28,7 @@ public protocol TaggedLogger: Logger {
     func log(_ message: @autoclosure () -> String, level: LoggingLevel, function: String)
 }
 
+// General logging methods
 public extension TaggedLogger {
     public func log(_ message: @autoclosure () -> String, level: LoggingLevel, function: String) {
         log(message, level: level, tag: tag, function: function)
