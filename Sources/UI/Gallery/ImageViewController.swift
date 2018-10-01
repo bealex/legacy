@@ -15,7 +15,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
     private let imageView: UIImageView = UIImageView()
     private let animatingImageView: UIImageView = UIImageView()
 
-    public let loadingIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    public let loadingIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
     public private(set) var loadingIndicatorViewXLayoutConstraint: NSLayoutConstraint?
     public private(set) var loadingIndicatorViewYLayoutConstraint: NSLayoutConstraint?
 
@@ -157,7 +157,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
             return isFullInteractive
         }
         transition.sourceRootView = { [weak self] in
-            return self?.view
+            self?.view
         }
         transition.completion = { [weak self] _ in
             guard let `self` = self else { return }

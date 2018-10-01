@@ -92,12 +92,14 @@ public extension UICollectionView {
     public func registerReusableHeader<CellType: UICollectionReusableView>(_ reusable: Reusable<CellType>) {
         switch reusable {
             case .class(let id):
-                register(CellType.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: id)
+                register(CellType.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                        withReuseIdentifier: id)
             case .classId:
-                register(CellType.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reusable.id)
+                register(CellType.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                        withReuseIdentifier: reusable.id)
             case .nib(let id, let name, let bundle):
                 let nib = UINib(nibName: name, bundle: bundle)
-                register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: id)
+                register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: id)
             }
     }
 
@@ -114,7 +116,7 @@ public extension UICollectionView {
         indexPath: IndexPath
     ) -> CellType {
         let anyCell = dequeueReusableSupplementaryView(
-            ofKind: UICollectionElementKindSectionHeader,
+            ofKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: reusable.id,
             for: indexPath
         )

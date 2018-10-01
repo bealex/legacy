@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DBA1CBB96282DA5FCEB7C8B /* SimpleTaggedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA15D16B07F5B535041B4A /* SimpleTaggedLogger.swift */; };
-		2DBA1D8CA7C6E0C769FAEDFF /* TaggedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA18571A6382BC05B1668F /* TaggedLogger.swift */; };
 		2DBA19BE64FAD5D5B929977C /* ComposedTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA17A3D9F75B067EDEE572 /* ComposedTransformer.swift */; };
 		2DBA1A5FC58C14CE3F38E23C /* DictionaryEnumTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA140D81FB24C37B4A20A2 /* DictionaryEnumTransformer.swift */; };
 		2DBA1B9C5CC0B3C3347FAF1D /* DefaultValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11428BAD6612F06C7C98 /* DefaultValueTransformer.swift */; };
+		2DBA1CBB96282DA5FCEB7C8B /* SimpleTaggedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA15D16B07F5B535041B4A /* SimpleTaggedLogger.swift */; };
+		2DBA1D8CA7C6E0C769FAEDFF /* TaggedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA18571A6382BC05B1668F /* TaggedLogger.swift */; };
 		441D90351DDF70F800B4493B /* RequestAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441D90341DDF70F800B4493B /* RequestAuthorizer.swift */; };
 		441D90371DDF716A00B4493B /* Optional+With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441D90361DDF716A00B4493B /* Optional+With.swift */; };
 		447729E21D7B121200D63FE7 /* Legacy-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 447729E11D7B121200D63FE7 /* Legacy-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -128,8 +128,8 @@
 /* Begin PBXFileReference section */
 		2DBA11428BAD6612F06C7C98 /* DefaultValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultValueTransformer.swift; sourceTree = "<group>"; };
 		2DBA140D81FB24C37B4A20A2 /* DictionaryEnumTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryEnumTransformer.swift; sourceTree = "<group>"; };
-		2DBA17A3D9F75B067EDEE572 /* ComposedTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposedTransformer.swift; sourceTree = "<group>"; };
 		2DBA15D16B07F5B535041B4A /* SimpleTaggedLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTaggedLogger.swift; sourceTree = "<group>"; };
+		2DBA17A3D9F75B067EDEE572 /* ComposedTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposedTransformer.swift; sourceTree = "<group>"; };
 		2DBA18571A6382BC05B1668F /* TaggedLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggedLogger.swift; sourceTree = "<group>"; };
 		441D90341DDF70F800B4493B /* RequestAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAuthorizer.swift; sourceTree = "<group>"; };
 		441D90361DDF716A00B4493B /* Optional+With.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+With.swift"; sourceTree = "<group>"; };
@@ -629,7 +629,7 @@
 				TargetAttributes = {
 					447729DD1D7B121200D63FE7 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 					};
 					44836647205E5D56000C986A = {
 						CreatedOnToolsVersion = 9.2;
@@ -939,7 +939,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -989,7 +989,7 @@
 				PRODUCT_NAME = Legacy;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

@@ -17,7 +17,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
     private let playerController: AVPlayerViewController = AVPlayerViewController()
     private let previewImageView: UIImageView = UIImageView()
     private let animatingImageView: UIImageView = UIImageView()
-    private let loadingIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    private let loadingIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
 
     private let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
 
@@ -46,7 +46,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
 
         // Video Player
 
-        addChildViewController(playerController)
+        addChild(playerController)
 
         playerController.view.translatesAutoresizingMaskIntoConstraints = false
         playerController.showsPlaybackControls = false
@@ -153,7 +153,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
             return isFullInteractive
         }
         transition.sourceRootView = { [weak self] in
-            return self?.view
+            self?.view
         }
         transition.completion = { [weak self] _ in
             guard let `self` = self else { return }
@@ -165,7 +165,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
 
         // Other
 
-        playerController.didMove(toParentViewController: self)
+        playerController.didMove(toParent: self)
 
         updatePreviewImage()
         updateShare()
@@ -275,12 +275,12 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
         }
     }
 
-    private func generateVideoPreview(asset: AVAsset, time: CMTime = kCMTimeZero, exact: Bool = false) -> UIImage? {
+    private func generateVideoPreview(asset: AVAsset, time: CMTime = CMTime.zero, exact: Bool = false) -> UIImage? {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
         if exact {
-            imageGenerator.requestedTimeToleranceBefore = kCMTimeZero
-            imageGenerator.requestedTimeToleranceAfter = kCMTimeZero
+            imageGenerator.requestedTimeToleranceBefore = CMTime.zero
+            imageGenerator.requestedTimeToleranceAfter = CMTime.zero
         }
         let cgImage = try? imageGenerator.copyCGImage(at: time, actualTime: nil)
         let image = cgImage.map(UIImage.init)
