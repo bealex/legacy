@@ -23,7 +23,7 @@ public extension UIImage {
             guard let cgImage = cgImage else { return self }
 
             let format = UIGraphicsImageRendererFormat()
-            format.prefersExtendedRange = true
+            format.preferredRange = .extended
             format.opaque = !hasAlpha
             format.scale = scale
             let renderer = UIGraphicsImageRenderer(size: size, format: format)

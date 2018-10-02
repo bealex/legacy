@@ -12,6 +12,7 @@
 		2DBA1B9C5CC0B3C3347FAF1D /* DefaultValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11428BAD6612F06C7C98 /* DefaultValueTransformer.swift */; };
 		2DBA1CBB96282DA5FCEB7C8B /* SimpleTaggedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA15D16B07F5B535041B4A /* SimpleTaggedLogger.swift */; };
 		2DBA1D8CA7C6E0C769FAEDFF /* TaggedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA18571A6382BC05B1668F /* TaggedLogger.swift */; };
+		2DBA1E1BEC0FD5E7653796DA /* OSLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1D8C0457D248D15A4A9D /* OSLogger.swift */; };
 		441D90351DDF70F800B4493B /* RequestAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441D90341DDF70F800B4493B /* RequestAuthorizer.swift */; };
 		441D90371DDF716A00B4493B /* Optional+With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441D90361DDF716A00B4493B /* Optional+With.swift */; };
 		447729E21D7B121200D63FE7 /* Legacy-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 447729E11D7B121200D63FE7 /* Legacy-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,6 +132,7 @@
 		2DBA15D16B07F5B535041B4A /* SimpleTaggedLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTaggedLogger.swift; sourceTree = "<group>"; };
 		2DBA17A3D9F75B067EDEE572 /* ComposedTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposedTransformer.swift; sourceTree = "<group>"; };
 		2DBA18571A6382BC05B1668F /* TaggedLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggedLogger.swift; sourceTree = "<group>"; };
+		2DBA1D8C0457D248D15A4A9D /* OSLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLogger.swift; sourceTree = "<group>"; };
 		441D90341DDF70F800B4493B /* RequestAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAuthorizer.swift; sourceTree = "<group>"; };
 		441D90361DDF716A00B4493B /* Optional+With.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+With.swift"; sourceTree = "<group>"; };
 		447729DE1D7B121200D63FE7 /* Legacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Legacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,6 +454,7 @@
 				B2FA801B3A3421E7A5215206 /* PrintLogger.swift */,
 				2DBA18571A6382BC05B1668F /* TaggedLogger.swift */,
 				2DBA15D16B07F5B535041B4A /* SimpleTaggedLogger.swift */,
+				2DBA1D8C0457D248D15A4A9D /* OSLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -685,7 +688,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --quiet\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --quiet\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -779,6 +782,7 @@
 				2DBA19BE64FAD5D5B929977C /* ComposedTransformer.swift in Sources */,
 				2DBA1B9C5CC0B3C3347FAF1D /* DefaultValueTransformer.swift in Sources */,
 				2DBA1A5FC58C14CE3F38E23C /* DictionaryEnumTransformer.swift in Sources */,
+				2DBA1E1BEC0FD5E7653796DA /* OSLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +855,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -885,6 +891,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -930,7 +937,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Legacy-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -982,7 +989,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Legacy-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eugene.Legacy-iOS";
