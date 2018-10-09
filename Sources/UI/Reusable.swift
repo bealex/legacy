@@ -24,7 +24,6 @@ public enum Reusable<CellType> {
 
 public extension UITableView {
     // Cell
-
     public func registerReusableCell<CellType: UITableViewCell>(_ reusable: Reusable<CellType>) {
         switch reusable {
             case .class(let id):
