@@ -62,7 +62,7 @@ public protocol LightRestClient: RestClient {
 
 public extension LightRestClient {
     @discardableResult
-    public func create<RequestTransformer: LightTransformer, ResponseTransformer: LightTransformer>(
+    func create<RequestTransformer: LightTransformer, ResponseTransformer: LightTransformer>(
         path: String, id: String?, object: RequestTransformer.T?, headers: [String: String],
         requestTransformer: RequestTransformer, responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
@@ -80,7 +80,7 @@ public extension LightRestClient {
     }
 
     @discardableResult
-    public func create<ResponseTransformer: LightTransformer>(
+    func create<ResponseTransformer: LightTransformer>(
         path: String, id: String?, data: Data?, contentType: String, headers: [String: String],
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
@@ -98,7 +98,7 @@ public extension LightRestClient {
     }
 
     @discardableResult
-    public func read<ResponseTransformer: LightTransformer>(
+    func read<ResponseTransformer: LightTransformer>(
         path: String, id: String?, parameters: [String: String], headers: [String: String],
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
@@ -116,7 +116,7 @@ public extension LightRestClient {
     }
 
     @discardableResult
-    public func update<RequestTransformer: LightTransformer, ResponseTransformer: LightTransformer>(
+    func update<RequestTransformer: LightTransformer, ResponseTransformer: LightTransformer>(
         path: String, id: String?, object: RequestTransformer.T?, headers: [String: String],
         requestTransformer: RequestTransformer, responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
@@ -134,7 +134,7 @@ public extension LightRestClient {
     }
 
     @discardableResult
-    public func update<ResponseTransformer: LightTransformer>(
+    func update<ResponseTransformer: LightTransformer>(
         path: String, id: String?, data: Data?, contentType: String, headers: [String: String],
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
@@ -152,7 +152,7 @@ public extension LightRestClient {
     }
 
     @discardableResult
-    public func delete<ResponseTransformer: LightTransformer>(
+    func delete<ResponseTransformer: LightTransformer>(
         path: String, id: String?, headers: [String: String],
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void

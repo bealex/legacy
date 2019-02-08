@@ -9,13 +9,13 @@
 import UIKit
 
 public extension UIImage {
-    public func prerender() {
+    func prerender() {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1), true, 0)
         draw(at: .zero)
         UIGraphicsEndImageContext()
     }
 
-    public func prerendered() -> UIImage {
+    func prerendered() -> UIImage {
         let width = size.width
         let height = size.height
 
@@ -47,7 +47,7 @@ public extension UIImage {
         }
     }
 
-    static public func thumbnail(data: Data, imageType: ImageType = .unknown, pixelSize: CGSize? = nil) -> UIImage? {
+    static func thumbnail(data: Data, imageType: ImageType = .unknown, pixelSize: CGSize? = nil) -> UIImage? {
         var options: [CFString: Any] = [ kCGImageSourceShouldCache: false ]
         if let hint = imageType.utType {
             options[kCGImageSourceTypeIdentifierHint] = hint
@@ -68,7 +68,7 @@ public extension UIImage {
         return UIImage(cgImage: cgImage)
     }
 
-    static public func thumbnail(url: URL, pixelSize: CGSize? = nil) -> UIImage? {
+    static func thumbnail(url: URL, pixelSize: CGSize? = nil) -> UIImage? {
         let options: [CFString: Any] = [ kCGImageSourceShouldCache: false ]
         guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, options as CFDictionary) else { return nil }
 

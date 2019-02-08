@@ -136,7 +136,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
             self?.close()
         }
         transition.shouldStartInteractiveTransition = { [weak self] in
-            guard let `self` = self else { return true }
+            guard let self = self else { return true }
 
             let orientation: UInt = 1 << UIApplication.shared.statusBarOrientation.rawValue
             let supportedOrientations = self.presenterInterfaceOrientations?()
@@ -156,7 +156,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
             self?.view
         }
         transition.completion = { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
 
             self.transition.interactive = false
             self.isTransitioning = false
@@ -184,7 +184,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
                 loadingIndicatorView.startAnimating()
 
                 videoLoader { [weak self] url, _ in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
 
                     self.loadingIndicatorView.stopAnimating()
 
@@ -254,7 +254,7 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
             imageSize = previewImage.size
         } else if let previewImageLoader = video.previewImageLoader {
             previewImageLoader {  [weak self] image, _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
 
                 if let image = image {
                     self.previewImageView.image = image

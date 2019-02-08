@@ -48,7 +48,7 @@ public protocol CodableNetworkClient: NetworkClient {
 
 public extension NetworkClient {
     @discardableResult
-    public func request<RequestTransformer: LightTransformer, ResponseTransformer: LightTransformer>(
+    func request<RequestTransformer: LightTransformer, ResponseTransformer: LightTransformer>(
         method: HttpMethod, path: String,
         parameters: [String: String], object: RequestTransformer.T?, headers: [String: String],
         requestTransformer: RequestTransformer, responseTransformer: ResponseTransformer,
@@ -101,7 +101,7 @@ public extension NetworkClient {
 
 public extension CodableNetworkClient {
     @discardableResult
-    public func request<RequestObject: Codable, ResponseObject: Codable>(
+    func request<RequestObject: Codable, ResponseObject: Codable>(
         method: HttpMethod, path: String,
         parameters: [String: String], object: RequestObject?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void

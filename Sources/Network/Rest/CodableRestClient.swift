@@ -55,7 +55,7 @@ public protocol CodableRestClient: RestClient, CodableNetworkClient {
 
 public extension CodableRestClient {
     @discardableResult
-    public func create<RequestObject: Codable, ResponseObject: Codable>(
+    func create<RequestObject: Codable, ResponseObject: Codable>(
         path: String, id: String?, object: RequestObject?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
@@ -70,7 +70,7 @@ public extension CodableRestClient {
     }
 
     @discardableResult
-    public func create<ResponseObject: Codable>(
+    func create<ResponseObject: Codable>(
         path: String, id: String?, data: Data?, contentType: String, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
@@ -87,7 +87,7 @@ public extension CodableRestClient {
     }
 
     @discardableResult
-    public func read<ResponseObject: Codable>(
+    func read<ResponseObject: Codable>(
         path: String, id: String?, parameters: [String: String], headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
@@ -102,7 +102,7 @@ public extension CodableRestClient {
     }
 
     @discardableResult
-    public func update<RequestObject: Codable, ResponseObject: Codable>(
+    func update<RequestObject: Codable, ResponseObject: Codable>(
         path: String, id: String?, object: RequestObject?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
@@ -117,7 +117,7 @@ public extension CodableRestClient {
     }
 
     @discardableResult
-    public func update<ResponseObject: Codable>(
+    func update<ResponseObject: Codable>(
         path: String, id: String?, data: Data?, contentType: String, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
