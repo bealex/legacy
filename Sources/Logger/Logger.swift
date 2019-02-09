@@ -14,8 +14,6 @@ public protocol Logger {
 
 public extension Logger {
     func verbose(_ message: @autoclosure () -> String, tag: String, function: String = #function) {
-        log(message, level: .verbose, tag: tag, function: function)
-    func verbose(_ message: @autoclosure () -> String, tag: String, function: String = #function) {
         log(message(), level: .verbose, tag: tag, function: function)
     }
 
