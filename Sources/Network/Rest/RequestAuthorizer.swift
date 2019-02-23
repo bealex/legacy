@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AuthError: Error {}
+public typealias AuthError = Error
 
 public protocol RequestAuthorizer {
     func authorize(request: URLRequest, completion: @escaping (Result<URLRequest, AuthError>) -> Void)

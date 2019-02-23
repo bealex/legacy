@@ -6,21 +6,12 @@
 // License: MIT, https://github.com/eugeneego/legacy/blob/master/LICENSE
 //
 
-public enum Result<T, E> {
-    case success(T)
-    case failure(E)
-
-    // MARK: - Constructors
-
-    public init(value: T) {
-        self = .success(value)
+public extension Result {
+    static func typeMismatchFatal(error: Error) -> Failure {
+        fatalError("Error type mismatch. Expected \(Failure.self), but given \(type(of: error))")
     }
 
-    public init(error: E) {
-        self = .failure(error)
-    }
-
-    public init(_ value: T?, _ error: @autoclosure () -> E) {
+    init(_ value: Success?, _ error: @autoclosure () -> Failure) {
         if let value = value {
             self = .success(value)
         } else {
@@ -28,19 +19,17 @@ public enum Result<T, E> {
         }
     }
 
-    // MARK: - Accessors
-
-    public var value: T? {
-        return map(success: { $0 }, failure: { _ in nil })
+    init(try closure: () throws -> Success, unknown: (Error) -> Failure = Result.typeMismatchFatal) {
+        do {
+            self = .success(try closure())
+        } catch let error as Failure {
+            self = .failure(error)
+        } catch {
+            self = .failure(unknown(error))
+        }
     }
 
-    public var error: E? {
-        return map(success: { _ in nil }, failure: { $0 })
-    }
-
-    // MARK: - Map
-
-    public func map<R>(success: (T) -> R, failure: (E) -> R) -> R {
+    func map<Result>(success: (Success) -> Result, failure: (Failure) -> Result) -> Result {
         switch self {
             case .success(let value):
                 return success(value)
@@ -49,97 +38,13 @@ public enum Result<T, E> {
         }
     }
 
-    public func map<U>(_ transform: (T) -> U) -> Result<U, E> {
-        return flatMap { .success(transform($0)) }
+    // MARK: - Accessors
+
+    var value: Success? {
+        return map(success: { $0 }, failure: { _ in nil })
     }
 
-    public func flatMap<U>(_ transform: (T) -> Result<U, E>) -> Result<U, E> {
-        return map(success: transform, failure: Result<U, E>.failure)
+    var error: Failure? {
+        return map(success: { _ in nil }, failure: { $0 })
     }
-
-    public func mapError<E2>(_ transform: (E) -> E2) -> Result<T, E2> {
-        return flatMapError { .failure(transform($0)) }
-    }
-
-    public func flatMapError<E2>(_ transform: (E) -> Result<T, E2>) -> Result<T, E2> {
-        return map(success: Result<T, E2>.success, failure: transform)
-    }
-
-    // MARK: - Recover
-
-    public func recover(_ value: @autoclosure () -> T) -> T {
-        return self.value ?? value()
-    }
-
-    public func recover(_ result: @autoclosure () -> Result<T, E>) -> Result<T, E> {
-        return map(success: { _ in self }, failure: { _ in result() })
-    }
-
-    // MARK: - Description
-
-    public var description: String {
-        return map(success: { ".success(\($0))" }, failure: { ".failure(\($0))" })
-    }
-}
-
-// swiftlint:disable:next no_grouping_extension
-public extension Result where E: Error {
-    static func typeMismatchFatal(error: Error) -> E {
-        fatalError("Error type mismatch. Expected \(E.self), but given \(type(of: error))")
-    }
-
-    init(try closure: () throws -> T, unknown: (Error) -> E = Result.typeMismatchFatal) {
-        do {
-            self = .success(try closure())
-        } catch let error as E {
-            self = .failure(error)
-        } catch {
-            self = .failure(unknown(error))
-        }
-    }
-
-    func `try`() throws -> T {
-        switch self {
-            case .success(let value):
-                return value
-            case .failure(let error):
-                throw error
-        }
-    }
-
-    func tryMap<U>(_ transform: (T) throws -> U, unknown: (Error) -> E = Result.typeMismatchFatal) -> Result<U, E> {
-        return flatMap { value in
-            Result<U, E>(
-                try: {
-                    try transform(value)
-                },
-                unknown: unknown
-            )
-        }
-    }
-}
-
-// MARK: - Equatable
-
-public func == <T: Equatable, E: Equatable> (left: Result<T, E>, right: Result<T, E>) -> Bool {
-    if let left = left.value, let right = right.value {
-        return left == right
-    } else if let left = left.error, let right = right.error {
-        return left == right
-    }
-    return false
-}
-
-public func != <T: Equatable, E: Equatable> (left: Result<T, E>, right: Result<T, E>) -> Bool {
-    return !(left == right)
-}
-
-// MARK: - Recover
-
-public func ?? <T, E> (left: Result<T, E>, right: @autoclosure () -> T) -> T {
-    return left.recover(right())
-}
-
-public func ?? <T, E> (left: Result<T, E>, right: @autoclosure () -> Result<T, E>) -> Result<T, E> {
-    return left.recover(right())
 }
