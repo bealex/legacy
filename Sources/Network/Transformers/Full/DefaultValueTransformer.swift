@@ -32,6 +32,6 @@ public struct DefaultValueTransformer<ValueTransformer: Transformer>: Transforme
 
     public func transform(destination value: Destination) -> TransformerResult<Source> {
         // swiftlint:disable:next array_init
-        return transformer.transform(destination: value).map { $0 }
+        transformer.transform(destination: value).map { $0 }
     }
 }

@@ -52,7 +52,7 @@ public extension EEColor {
         - returns: A parsed color or a default value if parsing is failed.
      */
     func from(hex: String, default: EEColor) -> EEColor {
-        return EEColor.from(hex: hex) ?? `default`
+        EEColor.from(hex: hex) ?? `default`
     }
 
     /**

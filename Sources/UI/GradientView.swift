@@ -18,9 +18,7 @@ open class GradientView: UIView {
     open var locations: [NSNumber]?
     open var colors: [UIColor]?
 
-    open override class var layerClass: AnyClass {
-        return CAGradientLayer.self
-    }
+    open override class var layerClass: AnyClass { CAGradientLayer.self }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)

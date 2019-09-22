@@ -27,19 +27,8 @@ public struct Json {
         self.init(data: url.flatMap { try? Data(contentsOf: $0) })
     }
 
-    public var dictionary: [String: Any]? {
-        return value as? [String: Any]
-    }
-
-    public var array: [Any]? {
-        return value as? [Any]
-    }
-
-    public var data: Data? {
-        return value.flatMap { try? JSONSerialization.data(withJSONObject: $0, options: []) }
-    }
-
-    public var string: String? {
-        return data.flatMap { String(data: $0, encoding: .utf8) }
-    }
+    public var dictionary: [String: Any]? { value as? [String: Any] }
+    public var array: [Any]? { value as? [Any] }
+    public var data: Data? { value.flatMap { try? JSONSerialization.data(withJSONObject: $0, options: []) } }
+    public var string: String? { data.flatMap { String(data: $0, encoding: .utf8) } }
 }

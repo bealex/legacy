@@ -40,11 +40,6 @@ public extension Result {
 
     // MARK: - Accessors
 
-    var value: Success? {
-        return map(success: { $0 }, failure: { _ in nil })
-    }
-
-    var error: Failure? {
-        return map(success: { _ in nil }, failure: { $0 })
-    }
+    var value: Success? { map(success: { $0 }, failure: { _ in nil }) }
+    var error: Failure? { map(success: { _ in nil }, failure: { $0 }) }
 }

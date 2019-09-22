@@ -36,6 +36,6 @@ public extension UIView {
         owner: Any? = nil,
         options: [UINib.OptionsKey: Any]? = nil
     ) -> Self {
-        return loadNib(name: name ?? String(describing: self), bundle: bundle ?? Bundle(for: self), owner: owner, options: options)
+        loadNib(name: name ?? String(describing: self), bundle: bundle ?? Bundle(for: self), owner: owner, options: options)
     }
 }

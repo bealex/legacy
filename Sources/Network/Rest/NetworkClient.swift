@@ -106,7 +106,7 @@ public extension CodableNetworkClient {
         parameters: [String: String], object: RequestObject?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: method,
             path: path,
             parameters: parameters,

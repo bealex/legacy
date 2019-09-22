@@ -71,7 +71,7 @@ public extension RestClient {
         requestSerializer: RequestSerializer, responseSerializer: ResponseSerializer,
         completion: @escaping (Result<ResponseSerializer.Value, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .post,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -89,7 +89,7 @@ public extension RestClient {
         responseSerializer: ResponseSerializer,
         completion: @escaping (Result<ResponseSerializer.Value, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .post,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -107,7 +107,7 @@ public extension RestClient {
         responseSerializer: ResponseSerializer,
         completion: @escaping (Result<ResponseSerializer.Value, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .get,
             path: pathWithId(path: path, id: id),
             parameters: parameters,
@@ -125,7 +125,7 @@ public extension RestClient {
         requestSerializer: RequestSerializer, responseSerializer: ResponseSerializer,
         completion: @escaping (Result<ResponseSerializer.Value, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .put,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -143,7 +143,7 @@ public extension RestClient {
         responseSerializer: ResponseSerializer,
         completion: @escaping (Result<ResponseSerializer.Value, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .put,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -161,7 +161,7 @@ public extension RestClient {
         responseSerializer: ResponseSerializer,
         completion: @escaping (Result<ResponseSerializer.Value, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .delete,
             path: pathWithId(path: path, id: id),
             parameters: [:],

@@ -50,7 +50,7 @@ public class ZoomTransition: NSObject,
     // MARK: - Non interactive transition
 
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return zoomDuration
+        zoomDuration
     }
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

@@ -57,10 +57,10 @@ public struct UrlEncodedHttpSerializer: HttpSerializer {
     }()
 
     public static func encode(_ string: String) -> String {
-        return string.addingPercentEncoding(withAllowedCharacters: characters) ?? ""
+        string.addingPercentEncoding(withAllowedCharacters: characters) ?? ""
     }
 
     public static func decode(_ string: String) -> String {
-        return string.removingPercentEncoding ?? ""
+        string.removingPercentEncoding ?? ""
     }
 }

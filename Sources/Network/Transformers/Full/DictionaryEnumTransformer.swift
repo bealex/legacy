@@ -32,6 +32,6 @@ public struct DictionaryEnumTransformer<Enum: Hashable, ValueTransformer: Transf
     }
 
     public func transform(destination value: Destination) -> Result<Source, TransformerError> {
-        return enumValueDictionary[value].map { valueTransformer.transform(destination: $0) } ?? .failure(.source)
+        enumValueDictionary[value].map { valueTransformer.transform(destination: $0) } ?? .failure(.source)
     }
 }

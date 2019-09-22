@@ -59,7 +59,7 @@ public extension CodableRestClient {
         path: String, id: String?, object: RequestObject?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .post,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -74,7 +74,7 @@ public extension CodableRestClient {
         path: String, id: String?, data: Data?, contentType: String, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .post,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -91,7 +91,7 @@ public extension CodableRestClient {
         path: String, id: String?, parameters: [String: String], headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .get,
             path: pathWithId(path: path, id: id),
             parameters: parameters,
@@ -106,7 +106,7 @@ public extension CodableRestClient {
         path: String, id: String?, object: RequestObject?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .put,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -121,7 +121,7 @@ public extension CodableRestClient {
         path: String, id: String?, data: Data?, contentType: String, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .put,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -138,7 +138,7 @@ public extension CodableRestClient {
         path: String, id: String?, headers: [String: String],
         completion: @escaping (Result<ResponseObject, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .delete,
             path: pathWithId(path: path, id: id),
             parameters: [:],

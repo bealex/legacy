@@ -19,7 +19,7 @@ open class UrlSessionHttp: Http {
 
     open var trustPolicies: [String: ServerTrustPolicy] {
         get {
-            return delegateObject.trustPolicies
+            delegateObject.trustPolicies
         }
         set {
             delegateObject.trustPolicies = newValue
@@ -46,7 +46,7 @@ open class UrlSessionHttp: Http {
     // MARK: - Log
 
     private func nils(_ object: Any?) -> String {
-        return object.map { "\($0)" } ?? "nil"
+        object.map { "\($0)" } ?? "nil"
     }
 
     private func logHeaders(_ httpHeaders: [AnyHashable: Any]?) -> String? {
@@ -75,7 +75,7 @@ open class UrlSessionHttp: Http {
     }
 
     private func isText(type: String) -> Bool {
-        return type.contains("json") || type.contains("xml") || type.contains("text")
+        type.contains("json") || type.contains("xml") || type.contains("text")
     }
 
     private func log(
@@ -175,8 +175,8 @@ open class UrlSessionHttp: Http {
     }
 
     private class Task: HttpTask {
-        var uploadProgress: HttpProgress { return upload }
-        var downloadProgress: HttpProgress { return download }
+        var uploadProgress: HttpProgress { upload }
+        var downloadProgress: HttpProgress { download }
 
         let task: URLSessionTask
         let startDate: Date

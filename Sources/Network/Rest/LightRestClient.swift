@@ -67,7 +67,7 @@ public extension LightRestClient {
         requestTransformer: RequestTransformer, responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .post,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -85,7 +85,7 @@ public extension LightRestClient {
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .post,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -103,7 +103,7 @@ public extension LightRestClient {
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .get,
             path: pathWithId(path: path, id: id),
             parameters: parameters,
@@ -121,7 +121,7 @@ public extension LightRestClient {
         requestTransformer: RequestTransformer, responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .put,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -139,7 +139,7 @@ public extension LightRestClient {
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .put,
             path: pathWithId(path: path, id: id),
             parameters: [:],
@@ -157,7 +157,7 @@ public extension LightRestClient {
         responseTransformer: ResponseTransformer,
         completion: @escaping (Result<ResponseTransformer.T, NetworkError>) -> Void
     ) -> NetworkTask {
-        return request(
+        request(
             method: .delete,
             path: pathWithId(path: path, id: id),
             parameters: [:],

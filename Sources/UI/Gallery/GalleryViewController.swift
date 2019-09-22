@@ -40,21 +40,10 @@ open class GalleryViewController: UIPageViewController, UIPageViewControllerData
         setupAppearance?(self)
     }
 
-    override open var prefersStatusBarHidden: Bool {
-        return currentViewController.prefersStatusBarHidden
-    }
-
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return currentViewController.preferredStatusBarStyle
-    }
-
-    override open var shouldAutorotate: Bool {
-        return true
-    }
-
-    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all
-    }
+    override open var prefersStatusBarHidden: Bool { currentViewController.prefersStatusBarHidden }
+    override open var preferredStatusBarStyle: UIStatusBarStyle { currentViewController.preferredStatusBarStyle }
+    override open var shouldAutorotate: Bool { true }
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
 
     // MARK: - Models
 
@@ -148,7 +137,7 @@ open class GalleryViewController: UIPageViewController, UIPageViewControllerData
     }
 
     open func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
-        return .all
+        .all
     }
 
     // MARK: - Transition

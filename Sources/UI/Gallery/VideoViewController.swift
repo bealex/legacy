@@ -202,21 +202,10 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
         pause()
     }
 
-    override open var prefersStatusBarHidden: Bool {
-        return statusBarHidden
-    }
-
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
-    override open var shouldAutorotate: Bool {
-        return true
-    }
-
-    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all
-    }
+    override open var prefersStatusBarHidden: Bool { statusBarHidden }
+    override open var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    override open var shouldAutorotate: Bool { true }
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
 
     // MARK: - Logic
 
@@ -408,11 +397,6 @@ open class VideoViewController: UIViewController, ZoomTransitionDelegate {
 
     private var transition: ZoomTransition = ZoomTransition(interactive: false)
 
-    open var zoomTransition: ZoomTransition? {
-        return transition
-    }
-
-    open var zoomTransitionInteractionController: UIViewControllerInteractiveTransitioning? {
-        return transition.interactive ? transition : nil
-    }
+    open var zoomTransition: ZoomTransition? { transition }
+    open var zoomTransitionInteractionController: UIViewControllerInteractiveTransitioning? { transition.interactive ? transition : nil }
 }

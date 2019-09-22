@@ -235,21 +235,10 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
         }
     }
 
-    override open var prefersStatusBarHidden: Bool {
-        return statusBarHidden
-    }
-
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
-    override open var shouldAutorotate: Bool {
-        return true
-    }
-
-    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all
-    }
+    override open var prefersStatusBarHidden: Bool { statusBarHidden }
+    override open var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    override open var shouldAutorotate: Bool { true }
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
 
     override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -364,7 +353,7 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
     // MARK: - Scroll View
 
     open func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
+        imageView
     }
 
     open func scrollViewDidZoom(_ scrollView: UIScrollView) {
@@ -442,10 +431,10 @@ open class ImageViewController: UIViewController, UIScrollViewDelegate, ZoomTran
     private var transition: ZoomTransition = ZoomTransition(interactive: false)
 
     open var zoomTransition: ZoomTransition? {
-        return transition
+        transition
     }
 
     open var zoomTransitionInteractionController: UIViewControllerInteractiveTransitioning? {
-        return transition.interactive ? transition : nil
+        transition.interactive ? transition : nil
     }
 }

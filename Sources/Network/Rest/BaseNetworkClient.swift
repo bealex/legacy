@@ -129,8 +129,8 @@ open class BaseNetworkClient: CodableNetworkClient {
     }
 
     private class Progress: HttpProgress {
-        var bytes: Int64? { return progress?.bytes }
-        var totalBytes: Int64? { return progress?.totalBytes }
+        var bytes: Int64? { progress?.bytes }
+        var totalBytes: Int64? { progress?.totalBytes }
         var callback: HttpProgressCallback?
 
         var progress: HttpProgress? {
@@ -146,8 +146,8 @@ open class BaseNetworkClient: CodableNetworkClient {
 
     private class Task: NetworkTask {
         var httpTask: HttpTask?
-        var uploadProgress: HttpProgress { return upload }
-        var downloadProgress: HttpProgress { return download }
+        var uploadProgress: HttpProgress { upload }
+        var downloadProgress: HttpProgress { download }
 
         var upload: Progress = Progress()
         var download: Progress = Progress()
