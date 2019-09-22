@@ -59,9 +59,10 @@ public class ZoomTransition: NSObject,
         // Getting view controllers and views
 
         guard
+            let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to),
-            let fromView = transitionContext.view(forKey: .from),
-            let toView = transitionContext.view(forKey: .to)
+            let fromView = transitionContext.view(forKey: .from) ?? fromVC.view,
+            let toView = transitionContext.view(forKey: .to) ?? toVC.view
         else { return }
 
         let toFinalFrame = transitionContext.finalFrame(for: toVC)
@@ -69,7 +70,9 @@ public class ZoomTransition: NSObject,
         let containerView = transitionContext.containerView
 
         toView.frame = toFinalFrame
-        containerView.addSubview(toView)
+        if toView.superview == nil {
+            containerView.addSubview(toView)
+        }
 
         // Getting animating view and destination frame after applying frames to views
 
@@ -152,8 +155,8 @@ public class ZoomTransition: NSObject,
         guard
             let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to),
-            let fromView = transitionContext.view(forKey: .from),
-            let toView = transitionContext.view(forKey: .to)
+            let fromView = transitionContext.view(forKey: .from) ?? fromVC.view,
+            let toView = transitionContext.view(forKey: .to) ?? toVC.view
         else { return }
 
         let toFinalFrame = transitionContext.finalFrame(for: toVC)
@@ -161,7 +164,9 @@ public class ZoomTransition: NSObject,
         let containerView = transitionContext.containerView
 
         toView.frame = toFinalFrame
-        containerView.insertSubview(toView, belowSubview: fromView)
+        if toView.superview == nil {
+            containerView.insertSubview(toView, belowSubview: fromView)
+        }
 
         // Getting animating view after applying frames to views
 

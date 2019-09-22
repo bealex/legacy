@@ -20,6 +20,10 @@ open class GalleryViewController: UIPageViewController, UIPageViewControllerData
 
         dataSource = self
         delegate = self
+        modalPresentationStyle = .overFullScreen
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
     }
 
     required public init?(coder: NSCoder) {
