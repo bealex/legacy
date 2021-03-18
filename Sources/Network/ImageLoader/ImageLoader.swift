@@ -11,6 +11,7 @@ import UIKit
 public enum ImageLoaderError: Error {
     case http(HttpError)
     case creating
+    case loading
     case unknown(Error?)
 }
 
